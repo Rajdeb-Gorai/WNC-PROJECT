@@ -2,6 +2,7 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const crewFilter = document.getElementById("crewFilter");
 const hyperdriveFilter = document.getElementById("hyperdriveFilter");
+const themeToggle = document.getElementById('themeToggle');
 
 let currentShips = [];
 
@@ -142,5 +143,9 @@ nextBtn.addEventListener("click", () => {
 
 crewFilter.addEventListener("change", applyFilters);
 hyperdriveFilter.addEventListener("change", applyFilters);
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+})
 
 getStarship(API_URL);

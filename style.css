@@ -108,3 +108,30 @@ button:disabled {
     background-color: #bdc3c7;
     cursor: not-allowed;
 }
+
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode #starshipList div {
+    background-color: #1e1e1e;
+    color: #0e0e0e;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode #starshipList h3 {
+    color: #4da8da;
+    border-bottom: 2px solid #4da8da;
+}
+
+body.dark-mode input, body.dark-mode select {
+    background-color: #2a2a2a;
+    color: white;
+    border: 1px solid #444;
+}
+
+body.dark-mode #starshipList p, body.dark-mode #starshipList strong {
+    color: #ffffff;
+}
