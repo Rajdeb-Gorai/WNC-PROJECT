@@ -1,6 +1,7 @@
 // 1. Grab the html elements we want to interact with
 const starshipList = document.getElementById('starshipList');
 const statusMessage = document.getElementById('statusMessage');
+const searchInput = document.getElementById('searchInput');
 
 // The base URL for the Stars Wars API
 const API_URL = 'https://swapi.dev/api/starships/';
@@ -8,24 +9,29 @@ const API_URL = 'https://swapi.dev/api/starships/';
 // 2. Create an asyncronus function to get the data
 // 'async' means this function takes time (fetching from the internet)
 // so the rest of the page won't freeze while it waits
-async function getStarship() {
+async function getStarship(searchTerm = "") { // default search itm is empty string
     try{
         // show our Loading State
         statusMessage.textContent = "Loading starships...";
 
+        // we create a dynamic URL
+        const url = `${API_URL}?search=${searchTerm}`;
+
         // go to the API and 'await' (wait for) the response
-        const response = await fetch(API_URL);
+        const response = await fetch(url);
 
         // Convert the raw response into JSON (a format javascript understands)
         const data = await response.json();
 
-        // Let's print the raw data to the browser's console so YOU can see it!
-        console.log("Raw data from the Stars Wars API:", data);
+        if(data.results.length === 0){
+            statusMessage.textContent = "No ships found matching your search";
+            starshipList.innerHTML = ""; // clear the old list
+            return; // stop running the rest of the function
+        }
 
-        // clear the loading message since we have the data now
-        statusMessage.textContent = "";
 
         // 'data results' is the array of the ships. Let's send them to our drawing function
+        statusMessage.textContent = "";
         renderShips(data.results);
     } catch(error){
         statusMessage.textContent = "Error loading starship. Please try again.";
@@ -56,7 +62,17 @@ function renderShips(ships){
         `;
         starshipList.append(shipCard);
     });
-
 }
 
+// 3. NEW: Listen to the search input!
+// The 'input' even fires every single time a key is pressed or deleted.
+searchInput.addEventListener('input', (event) => {
+    // event.target.value grabs exactly what is currently typed in the box
+    const typedText = event.target.value;
+
+    // call our fetch function with the new text
+    getStarship(typedText);
+});
+
+// 4. call it once when the page loads so it isn't empty at first
 getStarship();
