@@ -3,7 +3,6 @@ const nextBtn = document.getElementById("nextBtn");
 const crewFilter = document.getElementById("crewFilter");
 const hyperdriveFilter = document.getElementById("hyperdriveFilter");
 
-// we need a place to temporarily store the current 10 ships on the screen so we can filter then wihout asking the API for them again
 let currentShips = [];
 
 let nextUrl = null;
@@ -14,6 +13,38 @@ const statusMessage = document.getElementById("statusMessage");
 const searchInput = document.getElementById("searchInput");
 
 const API_URL = "https://swapi.dev/api/starships/";
+
+function applyFilters() {
+  let filteredShips = currentShips;
+
+  const crewValue = crewFilter.value;
+  const hyperdriveValue = hyperdriveFilter.value;
+
+  if (crewValue !== "all") {
+    filteredShips = filteredShips.filter((ship) => {
+      const crewNum = parseInt(ship.crew.replace(/,/g, ""));
+
+      if (isNaN(crewNum)) return false;
+
+      if (crewValue === "1-5") return crewNum >= 1 && crewNum <= 5;
+      if (crewValue === "6-50") return crewNum >= 6 && crewNum <= 50;
+      if (crewValue === "50+") return crewNum > 50;
+    });
+  }
+
+  if (hyperdriveValue !== "all") {
+    filteredShips = filteredShips.filter((ship) => {
+      const hdNum = parseFloat(ship.hyperdrive_rating);
+
+      if (isNaN(hdNum)) return false;
+
+      if (hyperdriveValue === "<1.0") return hdNum < 1.0;
+      if (hyperdriveValue === "1.0-2.0") return hdNum >= 1.0 && hdNum <= 2.0;
+      if (hyperdriveValue === ">2.0") return hdNum > 2.0;
+    });
+  }
+  renderShips(filteredShips);
+}
 
 function updatePaginationButtons() {
   prevBtn.hidden = false;
@@ -31,18 +62,6 @@ function updatePaginationButtons() {
     nextBtn.disabled = false;
   }
 }
-
-prevBtn.addEventListener("click", () => {
-  if (prevUrl !== null) {
-    getStarship(prevUrl);
-  }
-});
-
-nextBtn.addEventListener("click", () => {
-  if (nextUrl !== null) {
-    getStarship(nextUrl);
-  }
-});
 
 async function getStarship(url) {
   try {
@@ -68,8 +87,9 @@ async function getStarship(url) {
 
     updatePaginationButtons();
 
-    //
-    renderShips(data.results);
+    currentShips = data.results;
+
+    applyFilters();
   } catch (error) {
     statusMessage.textContent = "Error loading starship. Please try again.";
     console.log(error);
@@ -101,5 +121,20 @@ searchInput.addEventListener("input", (event) => {
 
   getStarship(searchUrl);
 });
+
+prevBtn.addEventListener("click", () => {
+  if (prevUrl !== null) {
+    getStarship(prevUrl);
+  }
+});
+
+nextBtn.addEventListener("click", () => {
+  if (nextUrl !== null) {
+    getStarship(nextUrl);
+  }
+});
+
+crewFilter.addEventListener("change", applyFilters);
+hyperdriveFilter.addEventListener("change", applyFilters);
 
 getStarship(API_URL);
