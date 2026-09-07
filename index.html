@@ -1,69 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Starship Fleet Dashboard</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Starship Fleet Dashboard</h1>
+      <h1>Starship Fleet Dashboard</h1>
     </header>
 
-
-
-
     <main>
+      <!-- SEARCH & FILTERS -->
+      <section id="controls">
+        <!-- Search Input -->
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search by name (e.g., Falcon)"
+        />
 
+        <!--Crew Filter-->
+        <select id="crewFilter">
+          <option value="all">All Crew Sizes</option>
+          <option value="1-5">1-5</option>
+          <option value="6-50">6-50</option>
+          <option value="50+">50+</option>
+        </select>
 
-        <!-- SEARCH & FILTERS -->
-        <section id="controls">
-            <!-- Search Input -->
-             <input type="text" id="searchInput" placeholder="Search by name (e.g., Falcon)">
+        <!--Hyperdrive Filter-->
+        <select id="hyperdriveFilter">
+          <option value="all">All Hyperdrive Ratings</option>
+          <option value="<1.0">&lt; 1.0</option>
+          <option value="1.0-2.0">1.0-2.0</option>
+          <option value=">2.0">&gt; 2.0</option>
+        </select>
+      </section>
 
-             <!--Crew Filter-->
-             <select id="crewFilter">
-                <option value="all">All Crew Sizes</option>
-                <option value="1-5">1-5</option>
-                <option value="6-50">6-50</option>
-                <option value="50+">50+</option>
-             </select>
+      <!--UI STATES (Loading, Error, Empty)-->
+      <div id="statusMessage"></div>
 
+      <!--DASHBOARD (Where the ships will appear)-->
+      <section id="starshipList">
+        <!--Javascript will inject the starships here-->
+      </section>
 
-             <!--Hyperdrive Filter-->
-             <select id="hyperdriveFilter">
-                <option value="all">All Hyperdrive Ratings</option>
-                <option value="<1.0">&lt; 1.0</option>
-                <option value="1.0-2.0">1.0-2.0</option>
-                <option value=">2.0">&gt; 2.0</option>
-             </select>
-        </section>
-
-
-        <!--UI STATES (Loading, Error, Empty)-->
-        <div id="statusMessage"></div>
-
-
-        <!--DASHBOARD (Where the ships will appear)-->
-        <section id="starshipList">
-            <!--Javascript will inject the starships here-->
-        </section>
-
-
-        <!--PAGINATION (Next/Prev buttorns)-->
-        <nav id="pagination">
-            <button id="prevBtn" disabled hidden>Previous</button>
-            <button id="nextBtn" disabled hidden>Next</button>
-        </nav>
-
-
-
+      <!--PAGINATION (Next/Prev buttorns)-->
+      <nav id="pagination">
+        <button id="prevBtn" disabled hidden>Previous</button>
+        <button id="nextBtn" disabled hidden>Next</button>
+      </nav>
     </main>
-    
 
     <!-- We link our JavaScript file at the very bottom of the body -->
     <script src="app.js"></script>
-
-
-</body>
+  </body>
 </html>
