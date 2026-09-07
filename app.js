@@ -114,12 +114,18 @@ function renderShips(ships) {
   });
 }
 
+let searchTimeout;
+
+
 searchInput.addEventListener("input", (event) => {
   const typedText = event.target.value;
 
-  const searchUrl = `${API_URL}?search=${typedText}`;
+  clearTimeout(searchTimeout);
 
-  getStarship(searchUrl);
+  searchTimeout = setTimeout(() => {
+    const searchUrl = `${API_URL}?search=${typedText}`;
+    getStarship(searchUrl);
+  }, 500);
 });
 
 prevBtn.addEventListener("click", () => {
