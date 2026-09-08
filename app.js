@@ -2,7 +2,12 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const crewFilter = document.getElementById("crewFilter");
 const hyperdriveFilter = document.getElementById("hyperdriveFilter");
-const themeToggle = document.getElementById('themeToggle');
+const settingsBtn = document.getElementById('settingsBtn');
+const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+const settingsSidebar = document.getElementById('settingsSidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const darkModeToggle = document.getElementById('darkModeToggle');
+const themeStatusText = document.getElementById('themeStatusText');
 
 let currentShips = [];
 
@@ -144,8 +149,30 @@ nextBtn.addEventListener("click", () => {
 crewFilter.addEventListener("change", applyFilters);
 hyperdriveFilter.addEventListener("change", applyFilters);
 
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-})
+
+function openSidebar() {
+  settingsSidebar.classList.add('open');
+  sidebarOverlay.classList.add('active');
+}
+
+function closeSidebar() {
+  settingsSidebar.classList.remove('open');
+  sidebarOverlay.classList.remove('active');
+}
+
+settingsBtn.addEventListener('click', openSidebar);
+closeSidebarBtn.addEventListener('click', closeSidebar);
+
+sidebarOverlay.addEventListener('click', closeSidebar);
+
+darkModeToggle.addEventListener('change', (event) => {
+  if(event.target.checked){
+    document.body.classList.add('dark-mode');
+    themeStatusText.textContent = "Dark mode";
+  } else {
+    document.body.classList.remove('dark-mode');
+    themeStatusText.textContent = "Light mode";
+  }
+});
 
 getStarship(API_URL);

@@ -4,12 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Starship Fleet Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
+
+    <!-- 1. Floating setting overlay -->
+    <button id="settingsBtn" class="floating-btn">
+      <span class="gear-icon">⚙️</span>
+    </button>
+
+    <!-- 2. The dark shadow overlay -->
+    <div id="sidebarOverlay"></div>
+
+    <!-- 3. The sidebar menu -->
+    <aside id="settingsSidebar">
+
+      <div class="sidebar-header">
+        <h2>Settings</h2>
+        <button id="closeSidebarBtn">&times;</button> <!--The 'X close button'-->
+      </div>
+
+        <!-- requested toggle layout -->
+        <div class="setting-item">
+          <span class="setting-label">Toggle Theme</span>
+
+          <div class="toggle-wrapper">
+            <!-- The sidebar switch -->
+            <label class="theme-switch">
+              <input type="checkbox" id="darkModeToggle">
+              <span class="slider"></span>
+            </label>
+            <!-- the dynamic status text -->
+             <span id="themeStatusText">Light mode</span>
+          </div>
+        </div>
+
+
+      
+
+    </aside>
+
+
+
+
+    <header class="modern-header">
       <h1>Starship Fleet Dashboard</h1>
-      <button id="themeToggle" style="margin-top: 15px">Toggle Dark Mode</button>
-      <link rel="stylesheet" href="style.css">
+      <p>Explore the galaxy's finest vessels</p>
+      
     </header>
 
     <main>
