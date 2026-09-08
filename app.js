@@ -105,8 +105,10 @@ async function getStarship(url) {
 function renderShips(ships) {
   starshipList.innerHTML = "";
 
-  ships.forEach((ship) => {
+  ships.forEach((ship, index) => {
     const shipCard = document.createElement("div");
+
+    shipCard.style.animationDelay = `${index * 0.1}s`;
 
     shipCard.innerHTML = `
             <h3>${ship.name}</h3>
