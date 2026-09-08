@@ -76,12 +76,12 @@ input {
     
     animation: slideUpFade 0.6s ease-out backwards;
 
-    transition: transform 0.2s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #starshipList div:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 25px rgba(52, 152, 219, 0.4);
 }
 
 #starshipList h3 {
@@ -116,11 +116,16 @@ button {
     color: white;
     border: none;
     border-radius: 8px;
-    transition: background-color 0.2s;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
     background-color: #2980b9;
+}
+
+button:hover:not(:disabled){
+    background-color: #2980b9;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.6);
 }
 
 button:disabled {
@@ -376,4 +381,8 @@ body.dark-mode .toggle-wrapper {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+body.dark-mode #starshipList div:hover {
+    box-shadow: 0 12px 30px rgba(77, 168, 218, 0.6);
 }
