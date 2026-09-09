@@ -209,10 +209,12 @@ classFilter.addEventListener("change", applyFilters);
 // Pagination
 prevBtn.addEventListener("click", () => {
     if (prevUrl !== null) getStarship(prevUrl);
+    window.scrollTo({top: 0, behavior: 'smooth'})
 });
 
 nextBtn.addEventListener("click", () => {
     if (nextUrl !== null) getStarship(nextUrl);
+    window.scrollTo({top: 0, behavior: 'smooth'})
 });
 
 // Sidebar & Theme
