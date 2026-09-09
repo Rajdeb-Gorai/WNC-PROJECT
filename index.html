@@ -1,101 +1,83 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Starship Fleet Dashboard</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+</head>
+<body>
 
-    <!-- 1. Floating setting overlay -->
+    <!-- =========================
+         SETTINGS SIDEBAR & BUTTON
+    ========================== -->
     <button id="settingsBtn" class="floating-btn">
-      <span class="gear-icon">⚙️</span>
+        <span class="gear-icon">⚙️</span>
     </button>
 
-    <!-- 2. The dark shadow overlay -->
     <div id="sidebarOverlay"></div>
 
-    <!-- 3. The sidebar menu -->
     <aside id="settingsSidebar">
-
-      <div class="sidebar-header">
-        <h2>Settings</h2>
-        <button id="closeSidebarBtn">&times;</button> <!--The 'X close button'-->
-      </div>
-
-        <!-- requested toggle layout -->
-        <div class="setting-item">
-          <span class="setting-label">Toggle Theme</span>
-
-          <div class="toggle-wrapper">
-            <!-- The sidebar switch -->
-            <label class="theme-switch">
-              <input type="checkbox" id="darkModeToggle">
-              <span class="slider"></span>
-            </label>
-            <!-- the dynamic status text -->
-             <span id="themeStatusText">Light mode</span>
-          </div>
+        <div class="sidebar-header">
+            <h2>Settings</h2>
+            <button id="closeSidebarBtn">&times;</button>
         </div>
 
-
-      
-
+        <div class="setting-item">
+            <span class="setting-label">Toggle Theme</span>
+            <div class="toggle-wrapper">
+                <label class="theme-switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span id="themeStatusText">Light mode</span>
+            </div>
+        </div>
     </aside>
 
-
-
-
+    <!-- =========================
+         MAIN APPLICATION UI
+    ========================== -->
     <header class="modern-header">
-      <h1>Starship Fleet Dashboard</h1>
-      <p>Explore the galaxy's finest vessels</p>
-      
+        <h1>Starship Fleet Dashboard</h1>
+        <p>Explore the galaxy's finest vessels</p>
     </header>
 
     <main>
-      <!-- SEARCH & FILTERS -->
-      <section id="controls">
-        <!-- Search Input -->
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Search by name (e.g., Falcon)"
-        />
+        <!-- SEARCH & FILTERS -->
+        <section id="controls">
+            <input type="text" id="searchInput" placeholder="Search by name (e.g., Falcon)" />
 
-        <!--Crew Filter-->
-        <select id="crewFilter">
-          <option value="all">All Crew Sizes</option>
-          <option value="1-5">1-5</option>
-          <option value="6-50">6-50</option>
-          <option value="50+">50+</option>
-        </select>
+            <select id="crewFilter">
+                <option value="all">All Crew Sizes</option>
+                <option value="1-5">1-5</option>
+                <option value="6-50">6-50</option>
+                <option value="50+">50+</option>
+            </select>
 
-        <!--Hyperdrive Filter-->
-        <select id="hyperdriveFilter">
-          <option value="all">All Hyperdrive Ratings</option>
-          <option value="<1.0">&lt; 1.0</option>
-          <option value="1.0-2.0">1.0-2.0</option>
-          <option value=">2.0">&gt; 2.0</option>
-        </select>
-      </section>
+            <select id="hyperdriveFilter">
+                <option value="all">All Hyperdrive Ratings</option>
+                <option value="<1.0">&lt; 1.0</option>
+                <option value="1.0-2.0">1.0-2.0</option>
+                <option value=">2.0">&gt; 2.0</option>
+            </select>
+        </section>
 
-      <!--UI STATES (Loading, Error, Empty)-->
-      <div id="statusMessage"></div>
+        <!-- UI STATES -->
+        <div id="statusMessage"></div>
 
-      <!--DASHBOARD (Where the ships will appear)-->
-      <section id="starshipList">
-        <!--Javascript will inject the starships here-->
-      </section>
+        <!-- DASHBOARD GRID -->
+        <section id="starshipList">
+            <!-- Javascript will inject the starships here -->
+        </section>
 
-      <!--PAGINATION (Next/Prev buttorns)-->
-      <nav id="pagination">
-        <button id="prevBtn" disabled hidden>Previous</button>
-        <button id="nextBtn" disabled hidden>Next</button>
-      </nav>
+        <!-- PAGINATION -->
+        <nav id="pagination">
+            <button id="prevBtn" disabled hidden>Previous</button>
+            <button id="nextBtn" disabled hidden>Next</button>
+        </nav>
     </main>
 
-    <!-- We link our JavaScript file at the very bottom of the body -->
     <script src="app.js"></script>
-  </body>
+</body>
 </html>
