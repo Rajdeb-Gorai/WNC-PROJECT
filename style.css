@@ -55,13 +55,28 @@ body {
 input, select {
     padding: 10px 15px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
     outline: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
+    border-radius: 8px;
+    color: #333;
+    
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
 }
 
-select:hover {
+input:hover, select:hover, input:focus, select:focus {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.8); /* Becomes slightly more solid when active */
+    border-color: rgba(52, 152, 219, 0.5); /* Blue tinted border */
+    box-shadow: 0 8px 15px rgba(52, 152, 219, 0.3); /* The blue aura */
+    cursor: text;
+}
+
+select:hover, select:focus{
     transform: translateY(-3px);
     box-shadow: 0 8px 15px rgba(52, 152, 219, 0.3);
     cursor: pointer;
@@ -220,7 +235,11 @@ button:disabled {
     right: -300px;
     width: 300px;
     height: 100%;
-    background: white;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px); 
+    -webkit-backdrop-filter: blur(16px); 
+    border-left: 1px solid rgba(255, 255, 255, 0.4); 
+    
     box-shadow: -5px 0 15px rgba(0,0,0,0.2);
     z-index: 1002;
     padding: 20px;
@@ -370,12 +389,16 @@ body.dark-mode {
 }
 
 body.dark-mode input, body.dark-mode select {
-    background-color: #2a2a2a;
+    background: rgba(30, 30, 30, 0.5);
     color: white;
-    border: 1px solid #444;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-body.dark-mode select:hover {
+body.dark-mode input:hover, body.dark-mode select:hover, 
+body.dark-mode input:focus, body.dark-mode select:focus {
+    background: rgba(45, 45, 45, 0.8);
+    border-color: rgba(77, 168, 218, 0.5);
     box-shadow: 0 8px 15px rgba(77, 168, 218, 0.5);
 }
 
@@ -399,7 +422,9 @@ body.dark-mode #starshipList p, body.dark-mode #starshipList strong {
 }
 
 body.dark-mode #settingsSidebar {
-    background-color: #1e1e1e;
+    /* Semi-transparent dark gray */
+    background: rgba(30, 30, 30, 0.7); 
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
     color: #ffffff;
 }
 
