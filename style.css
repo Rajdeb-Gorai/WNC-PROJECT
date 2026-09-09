@@ -406,3 +406,81 @@ body.dark-mode .toggle-wrapper {
 body.dark-mode .skeleton-title, body.dark-mode .skeleton-text {
     background: #333;
 }
+
+/* Footer Dark Mode Overrides */
+body.dark-mode .developer-footer {
+    border-top: 1px solid #333;
+}
+
+body.dark-mode .dev-name {
+    color: #e0e0e0;
+}
+
+body.dark-mode .dev-college {
+    color: #aaaaaa;
+}
+
+body.dark-mode .dev-link {
+    color: #4da8da;
+    border-color: #4da8da;
+}
+
+body.dark-mode .dev-link:hover {
+    background-color: #4da8da;
+    color: #121212;
+    box-shadow: 0 8px 15px rgba(77, 168, 218, 0.5);
+}
+
+/* =========================================
+   8. DEVELOPER FOOTER
+========================================= */
+.developer-footer {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-top: 1px solid #ddd;
+    background-color: transparent;
+    transition: border-color 0.4s ease;
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.dev-name {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    transition: color 0.4s ease; 
+}
+
+.dev-college {
+    font-size: 0.95rem;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+.dev-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 10px;
+}
+
+.dev-link {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1px solid #3498db;
+    transition: all 0.3s ease;
+}
+
+.dev-link:hover {
+    background-color: #3498db;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(52, 152, 219, 0.3);
+}
