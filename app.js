@@ -16,6 +16,7 @@ const nextBtn = document.getElementById("nextBtn");
 const crewFilter = document.getElementById("crewFilter");
 const hyperdriveFilter = document.getElementById("hyperdriveFilter");
 const sortControl = document.getElementById("sortControl");
+const classFilter = document.getElementById("classFilter");
 
 // Sidebar & Theme Elements
 const settingsBtn = document.getElementById('settingsBtn');
@@ -104,6 +105,7 @@ function applyFilters() {
     let filteredShips = currentShips;
     const crewValue = crewFilter.value;
     const hyperdriveValue = hyperdriveFilter.value;
+    const classValue = classFilter.value;
 
     // Crew Filter
     if (crewValue !== "all") {
@@ -127,6 +129,14 @@ function applyFilters() {
             if (hyperdriveValue === "1.0-2.0") return hdNum >= 1.0 && hdNum <= 2.0;
             if (hyperdriveValue === ">2.0") return hdNum > 2.0;
         });
+    }
+
+    // Starship Class Filter
+    if(classValue !== "all") {
+      filteredShips = filteredShips.filter((ship) => {
+        const shipClass = ship.starship_class.toLowerCase();
+        return shipClass.includes(classValue);
+      });
     }
     sortShips(filteredShips);
 }
@@ -194,6 +204,7 @@ searchInput.addEventListener("input", (event) => {
 crewFilter.addEventListener("change", applyFilters);
 hyperdriveFilter.addEventListener("change", applyFilters);
 sortControl.addEventListener("change", applyFilters);
+classFilter.addEventListener("change", applyFilters);
 
 // Pagination
 prevBtn.addEventListener("click", () => {
