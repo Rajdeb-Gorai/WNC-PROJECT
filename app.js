@@ -15,6 +15,7 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const crewFilter = document.getElementById("crewFilter");
 const hyperdriveFilter = document.getElementById("hyperdriveFilter");
+const sortControl = document.getElementById("sortControl");
 
 // Sidebar & Theme Elements
 const settingsBtn = document.getElementById('settingsBtn');
@@ -127,7 +128,35 @@ function applyFilters() {
             if (hyperdriveValue === ">2.0") return hdNum > 2.0;
         });
     }
-    renderShips(filteredShips);
+    sortShips(filteredShips);
+}
+
+function sortShips(ships) {
+  const sortValue = sortControl.value;
+
+  if(sortValue === 'default') {
+    renderShips(ships);
+    return;
+  }
+
+  const sortedShips = [...ships].sort((a, b) => {
+    if(sortValue === 'name-asc') {
+      return a.name.localeCompare(b.name);
+    }
+    if(sortValue === 'name-desc') {
+      return b.name.localeCompare(a.name);
+    }
+
+    if(sortValue.startsWith("crew")) {
+      const crewA = parseInt(a.crew.replace(/,/g, "")) || 0;
+      const crewB = parseInt(b.crew.replace(/,/g, "")) || 0;
+
+      if(sortValue === "crew-asc") return crewA-crewB;
+      if(sortValue === "crew-desc") return crewB-crewA;
+    }
+  });
+
+  renderShips(sortedShips);
 }
 
 function updatePaginationButtons() {
@@ -164,6 +193,7 @@ searchInput.addEventListener("input", (event) => {
 
 crewFilter.addEventListener("change", applyFilters);
 hyperdriveFilter.addEventListener("change", applyFilters);
+sortControl.addEventListener("change", applyFilters);
 
 // Pagination
 prevBtn.addEventListener("click", () => {
